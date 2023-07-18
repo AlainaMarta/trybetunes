@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoadingMessage from './Loading';
 import { createUser } from '../../services/userAPI';
+import './login.css';
 
 function Login() {
   const [loginName, setLoginName] = useState('');

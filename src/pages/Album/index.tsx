@@ -1,3 +1,5 @@
+import './album.css';
+
 function Album() {
   return (
     <div>
