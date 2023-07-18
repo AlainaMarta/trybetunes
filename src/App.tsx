@@ -1,6 +1,11 @@
+import RoutesComponent from './Routes';
+
 function App() {
   return (
-    <h1>Trybetunes</h1>
+    <div>
+      <h1>Trybetunes</h1>
+      <RoutesComponent />
+    </div>
   );
 }
 
