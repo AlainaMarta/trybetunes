@@ -13,19 +13,19 @@ function Login() {
     setLoginName(event.target.value);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setLoading(true);
-    createUser({ name: loginName })
-      .then(() => {
-        setLoading(false);
-        navigate('/search');
-      });
+    const result = await createUser({ name: loginName });
+    if (result === 'OK') {
+      setLoading(false);
+      navigate('/search');
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={ handleSubmit }>
+    <>
+      <form onSubmit={ handleSubmit } className="formLogin">
         <input
           type="text"
           id="login-name"
@@ -40,11 +40,10 @@ function Login() {
           data-testid="login-submit-button"
         >
           Entrar
-
         </button>
       </form>
       {loading && <LoadingMessage />}
-    </div>
+    </>
   );
 }
 

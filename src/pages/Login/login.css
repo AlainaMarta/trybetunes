@@ -1,3 +1,23 @@
 body {
   background-color: aliceblue;
 }
+
+h1 {
+  display: flex;
+  justify-content: center;
+}
+
+.formLogin {
+  display: flex;
+  justify-content: center;
+  height: 55px;
+  flex-wrap: wrap;
+
+}
+
+#login-name {
+  border-radius: 30px;
+  width: 20%;
+  text-align: center;
+  box-sizing: border-box;
+}
