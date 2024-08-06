@@ -1,5 +1,5 @@
 function LoadingMessage() {
-  return <div>Carregando...</div>;
+  return <div className="loading">Carregando...</div>;
 }
 
 export default LoadingMessage;
