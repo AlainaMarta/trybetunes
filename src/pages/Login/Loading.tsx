@@ -1,5 +1,9 @@
 function LoadingMessage() {
-  return <div className="loading">Carregando...</div>;
+  return (<img
+    id="loading"
+    src="src/images/loading.gif"
+    alt="Carregando"
+  />);
 }
 
 export default LoadingMessage;
