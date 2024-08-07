@@ -1,7 +1,3 @@
-body {
-  background-color: aliceblue;
-}
-
 ul {
   display: flex;
   flex-direction: column;

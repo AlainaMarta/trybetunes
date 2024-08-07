@@ -19,6 +19,7 @@ function Header() {
   }, []);
   return (
     <div>
+      <img className="logo" src="src/images/logo.svg" alt="Logo" />
       {loading && <LoadingMessage />}
       {loading === false
       && (

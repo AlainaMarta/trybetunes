@@ -24,18 +24,20 @@ function Login() {
   };
 
   return (
-    <>
+    <main className="form-main">
+      <img className="logo" src="src/images/logo.svg" alt="Logo" />
       <form onSubmit={ handleSubmit } className="formLogin">
         <input
           type="text"
           id="login-name"
           data-testid="login-name-input"
-          placeholder="Nome"
+          placeholder="Qual é seu nome?"
           value={ loginName }
           onChange={ handleLoginChange }
         />
         <button
           type="submit"
+          id="login-button"
           disabled={ loginName.length < 3 }
           data-testid="login-submit-button"
         >
@@ -43,7 +45,7 @@ function Login() {
         </button>
       </form>
       {loading && <LoadingMessage />}
-    </>
+    </main>
   );
 }
 
