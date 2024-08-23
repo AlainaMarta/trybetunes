@@ -9,9 +9,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0; 
-  display: flex; 
+  /* display: flex; 
   justify-content: center; 
-  align-items: center;
+  align-items: center; */
   height: 100vh; 
   width: 100%;
 }
@@ -21,11 +21,15 @@ code {
     monospace;
 }
 
-.logo {
+.form-main .logo {
   display: flex;
   margin-top: 20px;
   font-size: 3em;
   justify-content: center;
   width: 10em;
   height: auto; 
+}
+
+.header-div .logo {
+  width: 16em;
 }

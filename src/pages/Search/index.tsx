@@ -37,7 +37,7 @@ function Search() {
   // }
 
   return (
-    <div>
+    <div className="form-div">
       {loading && <LoadingMessage />}
       { !isLoadingName
          && (

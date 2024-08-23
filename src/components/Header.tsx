@@ -20,24 +20,49 @@ function Header() {
   }, []);
 
   return (
-    <div>
-      {/* <img className="logo" src="src/images/logo.svg" alt="Logo" /> */}
+    <div className="header-div">
+      <img className="logo" src="src/images/logo.svg" alt="Logo" />
       {isLoadingName ? <LoadingMessage />
         : (
-          <header data-testid="header-component">
-            <nav>
-              <NavLink to="/search" data-testid="link-to-search">Pesquisar</NavLink>
-              {' '}
-              <NavLink to="/favorites" data-testid="link-to-favorites">Favoritas</NavLink>
-              {' '}
-              <NavLink to="/profile" data-testid="link-to-profile">Perfil</NavLink>
-              {' '}
-            </nav>
+          <header className="side-bar" data-testid="header-component">
             <p data-testid="header-user-name">
-              Olá
+              Olá,
               {' '}
               {userInfo}
             </p>
+            <nav>
+              <NavLink
+                to="/search"
+                data-testid="link-to-search"
+                className={ ({ isActive }) => (isActive ? 'active' : '') }
+              >
+                <img src="src/images/icon_search.svg" alt="icon search" />
+                {'  '}
+                Pesquisar
+              </NavLink>
+              {' '}
+              <NavLink
+                to="/favorites"
+                data-testid="link-to-favorites"
+                className={ ({ isActive }) => (isActive ? 'active' : '') }
+              >
+                <img src="src/images/empty_heart.png" alt="icon heart" />
+                {'  '}
+                Favoritas
+              </NavLink>
+              {' '}
+              <NavLink
+                to="/profile"
+                data-testid="link-to-profile"
+                className={ ({ isActive }) => (isActive ? 'active' : '') }
+              >
+                <img src="src/images/icon_profile.svg" alt="icon profile" />
+                {'  '}
+                Perfil
+                <span />
+              </NavLink>
+              {' '}
+            </nav>
           </header>
         )}
     </div>

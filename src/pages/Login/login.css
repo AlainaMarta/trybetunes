@@ -57,6 +57,7 @@ body {
 .form-main {
   background-color: white;
   display: flex;
+  margin: 5% auto;
   width: 40em;
   border-radius: 2em;
   flex-direction: column;
@@ -70,4 +71,8 @@ body {
   width: 8em;
   margin-left: 11em;
   margin-top: -5%;
+}
+
+.teste {
+  display: flex;
 }

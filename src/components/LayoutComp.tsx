@@ -4,7 +4,7 @@ import Header from './Header';
 function Layout() {
   return (
     <>
-      <img className="logo" src="src/images/logo.svg" alt="Logo" />
+      {/* <img className="logo" src="src/images/logo.svg" alt="Logo" /> */}
       <Header />
       <Outlet />
     </>
