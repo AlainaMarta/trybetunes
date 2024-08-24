@@ -13,19 +13,24 @@ function AlbunsListComp(props: AlbunsListCompProps) {
       {
        albunsResults
            && (
-             <main>
-               <p>{`Resultado de álbuns de: ${valueInputAlbuns}`}</p>
+             <main className="main-music-container">
+               <p id="result-title">{`Resultado de álbuns de: ${valueInputAlbuns}`}</p>
 
                <ul>
                  {albunsResults.map((album: AlbumType) => (
                    <li key={ album.collectionId }>
                      <Link
+                       className="link-to-music"
                        to={ `/album/${album.collectionId}` }
                        data-testid={ `link-to-album-${album.collectionId}` }
                      >
-                       <img src={ album.artworkUrl100 } alt={ album.collectionName } />
-                       <p>{album.artistName}</p>
-                       <p>{album.collectionName }</p>
+                       <img
+                         src={ album.artworkUrl100 }
+                         alt={ album.collectionName }
+                         id="music-photo"
+                       />
+                       <p id="album-name">{album.collectionName }</p>
+                       <p id="artist-name">{album.artistName}</p>
                      </Link>
                    </li>
                  ))}

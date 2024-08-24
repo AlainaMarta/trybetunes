@@ -37,9 +37,9 @@ function Search() {
   // }
 
   return (
-    <div className="form-div">
-      {loading && <LoadingMessage />}
-      { !isLoadingName
+    <>
+      <div className="form-div">
+        { !isLoadingName
          && (
            <form onSubmit={ handleSubmitSearch }>
              <input
@@ -60,11 +60,14 @@ function Search() {
              </button>
            </form>
          )}
+      </div>
+      {/* <LoadingMessage /> */}
+      { loading && <LoadingMessage /> }
       { albunsResults && <AlbunsListComp
         albunsResults={ albunsResults }
         valueInputAlbuns={ valueInput }
       />}
-    </div>
+    </>
   );
 }
 
