@@ -16,7 +16,7 @@
   align-self: center;
 }
 
-#loading {
+.search-bar #loading {
   margin: 15em 10em 20em 46em;
 }
 
@@ -135,14 +135,14 @@
 #result-title {
   font-size: 2em;
   color: blueviolet;
-  margin: 1em 0em 2em 8em;
+  margin: 1em 0em 2em 35%;
 }
 
 .link-to-music {
   text-decoration: none;
   color: #2113dbe6;
   font-size: larger;
-  margin: 0em 0em 0em 1em;
+
 }
 
 
@@ -159,17 +159,21 @@ ul {
   height: 7em;
 }
 #artist-name {
-  font-size: 83%;
+  font-size: 14px;
+  width: 183px
 
 }
 
 #album-name {
   font-weight: 600; 
   color: deepskyblue;
-  font-size: 93%;
+  font-size: 14px;
+  width: 183px
 }
 
 ul li {
+  display: flex;
+  justify-content: center;
   border: 1px solid #ccc; 
   padding: 16px;
   border-radius: 20px;

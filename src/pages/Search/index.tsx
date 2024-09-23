@@ -37,7 +37,7 @@ function Search() {
   // }
 
   return (
-    <>
+    <section className="search-bar">
       <div className="form-div">
         { !isLoadingName
          && (
@@ -67,7 +67,7 @@ function Search() {
         albunsResults={ albunsResults }
         valueInputAlbuns={ valueInput }
       />}
-    </>
+    </section>
   );
 }
 
