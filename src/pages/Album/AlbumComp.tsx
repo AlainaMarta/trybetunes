@@ -26,10 +26,18 @@ function Album() {
   }, [id]);
 
   return (
-    <div>
+    <div className="album-details">
       {loading && <LoadingMessage />}
-      <p data-testid="artist-name">{albumInfo?.artistName}</p>
-      <p data-testid="album-name">{albumInfo?.collectionName}</p>
+      <section className="section-artist">
+        <p data-testid="artist-name" id="artist-name-details">{albumInfo?.artistName}</p>
+        <p
+          data-testid="album-name"
+          id="album-name-details"
+        >
+          {albumInfo?.collectionName}
+        </p>
+      </section>
+
       {!loading && musics.map((music) => (
         <MusicCard
           key={ music.trackId }
