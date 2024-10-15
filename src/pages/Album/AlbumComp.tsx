@@ -29,13 +29,18 @@ function Album() {
     <div className="album-details">
       {loading && <LoadingMessage />}
       <section className="section-artist">
-        <p data-testid="artist-name" id="artist-name-details">{albumInfo?.artistName}</p>
+        <img
+          src={ albumInfo?.artworkUrl100 }
+          alt={ albumInfo?.collectionName }
+          id="music-photo"
+        />
         <p
           data-testid="album-name"
           id="album-name-details"
         >
           {albumInfo?.collectionName}
         </p>
+        <p data-testid="artist-name" id="artist-name-details">{albumInfo?.artistName}</p>
       </section>
 
       {!loading && musics.map((music) => (

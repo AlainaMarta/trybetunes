@@ -21,7 +21,7 @@ function Header() {
 
   return (
     <div className="header-div">
-      <img className="logo" src="src/images/logo.svg" alt="Logo" />
+      <img className="logo" src="/src/images/logo.svg" alt="Logo" />
       {isLoadingName ? <LoadingMessage />
         : (
           <header className="side-bar" data-testid="header-component">
@@ -36,7 +36,7 @@ function Header() {
                 data-testid="link-to-search"
                 className={ ({ isActive }) => (isActive ? 'active' : '') }
               >
-                <img src="src/images/icon_search.svg" alt="icon search" />
+                <img src="/src/images/icon_search.svg" alt="icon search" />
                 {'  '}
                 Pesquisar
               </NavLink>
@@ -46,7 +46,7 @@ function Header() {
                 data-testid="link-to-favorites"
                 className={ ({ isActive }) => (isActive ? 'active' : '') }
               >
-                <img src="src/images/empty_heart.png" alt="icon heart" />
+                <img src="/src/images/empty_heart.png" alt="icon heart" />
                 {'  '}
                 Favoritas
               </NavLink>
@@ -56,7 +56,7 @@ function Header() {
                 data-testid="link-to-profile"
                 className={ ({ isActive }) => (isActive ? 'active' : '') }
               >
-                <img src="src/images/icon_profile.svg" alt="icon profile" />
+                <img src="/src/images/icon_profile.svg" alt="icon profile" />
                 {'  '}
                 Perfil
                 <span />
