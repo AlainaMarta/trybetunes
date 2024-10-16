@@ -20,10 +20,11 @@ function Header() {
   }, []);
 
   return (
-    <div className="header-div">
-      <img className="logo" src="/src/images/logo.svg" alt="Logo" />
-      {isLoadingName ? <LoadingMessage />
-        : (
+    <div>
+      {isLoadingName ? <LoadingMessage /> : (
+        <div className="header-div">
+          <img className="logo" src="/src/images/logo.svg" alt="Logo" />
+
           <header className="side-bar" data-testid="header-component">
             <p data-testid="header-user-name">
               Olá,
@@ -64,7 +65,9 @@ function Header() {
               {' '}
             </nav>
           </header>
-        )}
+
+        </div>
+      )}
     </div>
 
   );
