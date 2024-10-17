@@ -38,31 +38,32 @@ function Search() {
 
   return (
     <section className="search-bar">
-      <div className="form-div">
-        { !isLoadingName
-         && (
-           <form onSubmit={ handleSubmitSearch }>
-             <input
-               type="text"
-               id="search-artist"
-               data-testid="search-artist-input"
-               placeholder="Nome do artista/banda"
-               value={ nameArtistOrBand }
-               onChange={ handleNameArtistOrBand }
-             />
-             <button
-               data-testid="search-artist-button"
-               disabled={ nameArtistOrBand.length < 2 }
-               type="submit"
-             >
-               Pesquisar
+      {isLoadingName ? <LoadingMessage /> : (
+        <div className="form-div">
 
-             </button>
-           </form>
-         )}
-      </div>
+          <form onSubmit={ handleSubmitSearch }>
+            <input
+              type="text"
+              id="search-artist"
+              data-testid="search-artist-input"
+              placeholder="Nome do artista/banda"
+              value={ nameArtistOrBand }
+              onChange={ handleNameArtistOrBand }
+            />
+            <button
+              data-testid="search-artist-button"
+              disabled={ nameArtistOrBand.length < 2 }
+              type="submit"
+            >
+              Pesquisar
+
+            </button>
+          </form>
+
+        </div>
+      )}
       {/* <LoadingMessage /> */}
-      { loading && <LoadingMessage /> }
+      {/* { loading && <LoadingMessage /> } */}
       { albunsResults && <AlbunsListComp
         albunsResults={ albunsResults }
         valueInputAlbuns={ valueInput }

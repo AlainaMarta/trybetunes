@@ -21,7 +21,7 @@ function Header() {
 
   return (
     <div>
-      {isLoadingName ? <LoadingMessage /> : (
+      {isLoadingName ? <span /> : (
         <div className="header-div">
           <img className="logo" src="/src/images/logo.svg" alt="Logo" />
 
