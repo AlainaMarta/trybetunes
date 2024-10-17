@@ -1,13 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import './search.css';
-import { Link } from 'react-router-dom';
 import searchAlbumsAPI from '../../services/searchAlbumsAPI';
 import { AlbumType } from '../../types';
 import LoadingMessage from '../Login/Loading';
+import AlbunsListComp from '../../components/AlbunsListComp';
+import LoadingContext from '../../context/LoadingContext';
 
 function Search() {
   const [nameArtistOrBand, setNameArtistOrBAnd] = useState('');
   const [loading, setLoading] = useState(false);
+  const { isLoadingName } = useContext(LoadingContext);
   const [albunsResults, setAlbunsRestults] = useState<AlbumType[]>();
   const [valueInput, setValueInput] = useState('');
 
@@ -15,11 +17,8 @@ function Search() {
     setNameArtistOrBAnd(event.target.value);
   }
 
-  function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmitSearch(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-  }
-
-  async function handleSearchButton() {
     setNameArtistOrBAnd('');
     setLoading(true);
     const resultsAlbum = await searchAlbumsAPI(nameArtistOrBand);
@@ -28,53 +27,48 @@ function Search() {
     setAlbunsRestults(resultsAlbum);
   }
 
+  // async function handleSearchButton() {
+  //   setNameArtistOrBAnd('');
+  //   setLoading(true);
+  //   const resultsAlbum = await searchAlbumsAPI(nameArtistOrBand);
+  //   setValueInput(nameArtistOrBand);
+  //   setLoading(false);
+  //   setAlbunsRestults(resultsAlbum);
+  // }
+
   return (
-    <div>
-      {loading && <LoadingMessage />}
-      {loading === false
-       && (
-         <form onSubmit={ handleSubmitSearch }>
-           <input
-             type="text"
-             id="search-artist"
-             data-testid="search-artist-input"
-             placeholder="Nome do artista/banda"
-             value={ nameArtistOrBand }
-             onChange={ handleNameArtistOrBand }
-           />
-           <button
-             data-testid="search-artist-button"
-             disabled={ nameArtistOrBand.length < 2 }
-             onClick={ handleSearchButton }
-           >
-             Pesquisar
+    <section className="search-bar">
+      {isLoadingName ? <LoadingMessage /> : (
+        <div className="form-div">
 
-           </button>
-         </form>
-       ) }
-      { albunsResults
-       && (
-         <p>{`Resultado de álbuns de: ${valueInput}`}</p>
-       )}
-      { albunsResults && (
-        <ul>
-          {albunsResults.map((album: AlbumType) => (
-            <li key={ album.collectionId }>
-              <Link
-                to={ `/album/${album.collectionId}` }
-                data-testid={ `link-to-album-${album.collectionId}` }
-              >
-                <img src={ album.artworkUrl100 } alt={ album.collectionName } />
-                <p>{album.artistName}</p>
-                <p>{album.collectionName }</p>
-              </Link>
-            </li>
-          ))}
-        </ul>
+          <form onSubmit={ handleSubmitSearch }>
+            <input
+              type="text"
+              id="search-artist"
+              data-testid="search-artist-input"
+              placeholder="Nome do artista/banda"
+              value={ nameArtistOrBand }
+              onChange={ handleNameArtistOrBand }
+            />
+            <button
+              data-testid="search-artist-button"
+              disabled={ nameArtistOrBand.length < 2 }
+              type="submit"
+            >
+              Pesquisar
 
-      ) }
-      {albunsResults?.length === 0 && <h1>Nenhum álbum foi encontrado</h1>}
-    </div>
+            </button>
+          </form>
+
+        </div>
+      )}
+      {/* <LoadingMessage /> */}
+      {/* { loading && <LoadingMessage /> } */}
+      { albunsResults && <AlbunsListComp
+        albunsResults={ albunsResults }
+        valueInputAlbuns={ valueInput }
+      />}
+    </section>
   );
 }
 

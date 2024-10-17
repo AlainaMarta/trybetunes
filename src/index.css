@@ -2,30 +2,44 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  background-image: url("src/images/Design sem nome.png");
+  margin: 0; 
+  height: 100vh; 
+  width: 100%;
+  background-color: #EFF3F9;
+}
+.login-page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-image: url("src/images/background.png");
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   margin: 0; 
-  display: flex; 
+  /* display: flex; 
   justify-content: center; 
-  align-items: center;
+  align-items: center; */
   height: 100vh; 
   width: 100%;
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.logo {
+.form-main .logo {
   display: flex;
   margin-top: 20px;
   font-size: 3em;
   justify-content: center;
   width: 10em;
   height: auto; 
+}
+
+.header-div .logo {
+  width: 16em;
 }

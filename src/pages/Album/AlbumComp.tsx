@@ -26,19 +26,33 @@ function Album() {
   }, [id]);
 
   return (
-    <div>
+    <div className="album-details">
       {loading && <LoadingMessage />}
-      <p data-testid="artist-name">{albumInfo?.artistName}</p>
-      <p data-testid="album-name">{albumInfo?.collectionName}</p>
-      {!loading && musics.map((music) => (
-        <MusicCard
-          key={ music.trackId }
-          trackId={ music.trackId }
-          trackName={ music.trackName }
-          previewUrl={ music.previewUrl }
+      <section className="section-artist">
+        <img
+          src={ albumInfo?.artworkUrl100 }
+          alt={ albumInfo?.collectionName }
+          id="music-photo"
         />
+        <p
+          data-testid="album-name"
+          id="album-name-details"
+        >
+          {albumInfo?.collectionName}
+        </p>
+        <p data-testid="artist-name" id="artist-name-details">{albumInfo?.artistName}</p>
+      </section>
+      <section className="section-music">
+        {!loading && musics.map((music) => (
+          <MusicCard
+            key={ music.trackId }
+            trackId={ music.trackId }
+            trackName={ music.trackName }
+            previewUrl={ music.previewUrl }
+          />
 
-      ))}
+        ))}
+      </section>
     </div>
   );
 }
