@@ -42,16 +42,17 @@ function Album() {
         </p>
         <p data-testid="artist-name" id="artist-name-details">{albumInfo?.artistName}</p>
       </section>
+      <section className="section-music">
+        {!loading && musics.map((music) => (
+          <MusicCard
+            key={ music.trackId }
+            trackId={ music.trackId }
+            trackName={ music.trackName }
+            previewUrl={ music.previewUrl }
+          />
 
-      {!loading && musics.map((music) => (
-        <MusicCard
-          key={ music.trackId }
-          trackId={ music.trackId }
-          trackName={ music.trackName }
-          previewUrl={ music.previewUrl }
-        />
-
-      ))}
+        ))}
+      </section>
     </div>
   );
 }
