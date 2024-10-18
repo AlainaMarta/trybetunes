@@ -75,3 +75,12 @@
 .music-card p {
   font-size: larger;
 }
+
+.heart-button {
+  width: 40px;   /* Largura do botão */
+  height: 40px;  /* Altura do botão */
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+}

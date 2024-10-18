@@ -1,6 +1,14 @@
+import { useState } from 'react';
 import { SongType } from '../../types';
 
-function MusicCard({ trackName, previewUrl }: SongType) {
+function MusicCard({ trackId, trackName, previewUrl }: SongType) {
+  const [isFavorite, setIsFavorite] = useState(false);
+
+  function handleFavoriteChange() {
+    setIsFavorite(!isFavorite);
+    console.log('foi');
+  }
+
   return (
     <div className="music-card">
       <p>{trackName}</p>
@@ -12,9 +20,20 @@ function MusicCard({ trackName, previewUrl }: SongType) {
         <code>audio</code>
         .
       </audio>
-      <button className="heart-button">
-        <img src="/src/images/empty_heart.png" alt="heart" />
-      </button>
+      <label htmlFor="heart">
+        <input
+          type="checkbox"
+          name="heart"
+          checked={ isFavorite }
+          id="heart"
+          onChange={ handleFavoriteChange }
+        />
+        <img
+          src={ isFavorite
+            ? '/src/images/checked_heart.png' : '/src/images/empty_heart.png' }
+          alt="favorite"
+        />
+      </label>
     </div>
   );
 }
