@@ -2,20 +2,27 @@ import { useState } from 'react';
 import { SongType } from '../../types';
 import { addSong, getFavoriteSongs, removeSong } from '../../services/favoriteSongsAPI';
 
-function MusicCard({ trackId, trackName, previewUrl }: SongType) {
-  const [isFavorite, setIsFavorite] = useState(false);
+type MusicCardProps = SongType & {
+  isAlreadyFav: boolean;
+  unFavorite?: () => void;
+};
+
+function MusicCard({ trackId, trackName,
+  previewUrl, isAlreadyFav, unFavorite = undefined }: MusicCardProps) {
+  const [isFavorite, setIsFavorite] = useState(isAlreadyFav);
 
   async function handleFavoriteChange() {
     const favoriteSongs = await getFavoriteSongs();
     const isSongFavorite = favoriteSongs.some((song) => song.trackId === trackId);
 
+    setIsFavorite(!isSongFavorite);
+
     if (isSongFavorite) {
       await removeSong({ trackId, trackName, previewUrl });
+      unFavorite?.();
     } else {
       await addSong({ trackId, trackName, previewUrl });
     }
-    const updatedFavoriteSongs = await getFavoriteSongs();
-    setIsFavorite(updatedFavoriteSongs.some((song) => song.trackId === trackId));
   }
 
   return (

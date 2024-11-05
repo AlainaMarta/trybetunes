@@ -27,15 +27,6 @@ function Search() {
     setAlbunsRestults(resultsAlbum);
   }
 
-  // async function handleSearchButton() {
-  //   setNameArtistOrBAnd('');
-  //   setLoading(true);
-  //   const resultsAlbum = await searchAlbumsAPI(nameArtistOrBand);
-  //   setValueInput(nameArtistOrBand);
-  //   setLoading(false);
-  //   setAlbunsRestults(resultsAlbum);
-  // }
-
   return (
     <section className="search-bar">
       {isLoadingName ? <LoadingMessage /> : (
@@ -62,8 +53,7 @@ function Search() {
 
         </div>
       )}
-      {/* <LoadingMessage /> */}
-      {/* { loading && <LoadingMessage /> } */}
+
       { albunsResults && <AlbunsListComp
         albunsResults={ albunsResults }
         valueInputAlbuns={ valueInput }
