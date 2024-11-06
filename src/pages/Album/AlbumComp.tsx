@@ -5,11 +5,13 @@ import { AlbumType, SongType } from '../../types';
 import MusicCard from './CardMusic';
 import getMusics from '../../services/musicsAPI';
 import LoadingMessage from '../Login/Loading';
+import { getFavoriteSongs } from '../../services/favoriteSongsAPI';
 
 function Album() {
   const { id } = useParams();
   const [albumInfo, setAlbumInfo] = useState<AlbumType>();
   const [musics, setMusics] = useState<SongType[]>([]);
+  const [favoriteSongs, setFavoriteSongs] = useState<SongType[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -17,9 +19,12 @@ function Album() {
       if (id) {
         setLoading(true);
         const [albumInf, ...musicsArray] = await getMusics(id);
+        const favoriteMusicsList = await getFavoriteSongs();
+
         setLoading(false);
         setAlbumInfo(albumInf);
         setMusics(musicsArray);
+        setFavoriteSongs(favoriteMusicsList);
       }
     }
     handleGetMusic();
@@ -49,6 +54,7 @@ function Album() {
             trackId={ music.trackId }
             trackName={ music.trackName }
             previewUrl={ music.previewUrl }
+            isAlreadyFav={ favoriteSongs.some((fav) => fav.trackId === music.trackId) }
           />
 
         ))}
