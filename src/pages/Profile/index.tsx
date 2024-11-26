@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './profile.css';
 import { Link } from 'react-router-dom';
 import { UserType } from '../../types';
 import { getUser } from '../../services/userAPI';
@@ -19,7 +20,7 @@ function Profile() {
   }, []);
 
   return (
-    <div>
+    <div className="profile-section">
       {loading && <LoadingMessage />}
       <h1>{userInfo?.name}</h1>
       <h2>{userInfo?.email}</h2>
