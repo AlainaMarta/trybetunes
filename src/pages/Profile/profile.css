@@ -1,0 +1,9 @@
+.profile-section {
+    display: flex;
+    justify-content: center;
+}
+
+.edit-profile-div {
+    display: flex;
+    justify-content: center;
+}
