@@ -1,12 +1,20 @@
 import { useEffect, useState } from 'react';
-import { getUser } from '../services/userAPI';
+import { useNavigate } from 'react-router-dom';
+import { getUser, updateUser } from '../services/userAPI';
 import { UserType } from '../types';
 import LoadingMessage from '../pages/Login/Loading';
 
 function ProfileEdit() {
-  const [userInfo, setUserinfo] = useState<UserType>();
+  const [userInfo, setUserinfo] = useState<UserType>({
+    name: '',
+    email: '',
+    image: '',
+    description: '',
+  });
+
   const [loading, setLoading] = useState<boolean>();
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function handleUserInfo() {
@@ -18,7 +26,15 @@ function ProfileEdit() {
     handleUserInfo();
   }, []);
 
-  function handlechangeForm(event: React.ChangeEvent<HTMLInputElement>) {
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const isOkay = await updateUser(userInfo);
+    navigate('/profile');
+    console.log(isOkay);
+  }
+
+  function handlechangeForm(event:
+  React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
     const { name, value } = event.target;
     setUserinfo({
       ...userInfo,
@@ -28,7 +44,7 @@ function ProfileEdit() {
   return (
     <div className="edit-profile-div">
       {loading && <LoadingMessage />}
-      <form>
+      <form onSubmit={ handleSubmit }>
         <label>
           Nome
           <input
@@ -36,6 +52,7 @@ function ProfileEdit() {
             name="name"
             required
             data-testid="edit-input-name"
+            onChange={ handlechangeForm }
           />
         </label>
         <label>
@@ -45,15 +62,7 @@ function ProfileEdit() {
             name="email"
             required
             data-testid="edit-input-email"
-          />
-        </label>
-        <label>
-          Descrição
-          <textarea
-            value={ userInfo?.description }
-            name="description"
-            required
-            data-testid="edit-input-description"
+            onChange={ handlechangeForm }
           />
         </label>
         <input
@@ -64,8 +73,28 @@ function ProfileEdit() {
           required
           placeholder="Insira um link"
           data-testid="edit-input-image"
+          onChange={ handlechangeForm }
         />
-        <button data-testid="edit-input-image" disabled>SALVAR</button>
+        <label>
+          Descrição
+          <textarea
+            value={ userInfo?.description }
+            name="description"
+            required
+            data-testid="edit-input-description"
+            onChange={ handlechangeForm }
+          />
+        </label>
+        <button
+          data-testid="edit-input-image"
+          disabled={ userInfo.name.trim() === ''
+            || userInfo.email.trim() === ''
+            || userInfo.image.trim() === ''
+            || userInfo.description.trim() === ''
+            || !regexEmail.test(userInfo.email) }
+        >
+          SALVAR
+        </button>
       </form>
     </div>
   );
