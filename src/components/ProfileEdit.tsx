@@ -45,6 +45,23 @@ function ProfileEdit() {
     <div className="edit-profile-div">
       {loading && <LoadingMessage />}
       <form onSubmit={ handleSubmit }>
+        <section>
+          <img
+            alt="profile"
+            src={ userInfo.image
+              ? userInfo.image : '/src/images/icon_profile.svg' }
+          />
+          <input
+            type="text"
+            name="image"
+            id="image-link"
+            value={ userInfo?.image }
+            required
+            placeholder="Insira um link"
+            data-testid="edit-input-image"
+            onChange={ handlechangeForm }
+          />
+        </section>
         <label>
           Nome
           <input
@@ -65,16 +82,7 @@ function ProfileEdit() {
             onChange={ handlechangeForm }
           />
         </label>
-        <input
-          type="text"
-          name="image"
-          id="image-link"
-          value={ userInfo?.image }
-          required
-          placeholder="Insira um link"
-          data-testid="edit-input-image"
-          onChange={ handlechangeForm }
-        />
+
         <label>
           Descrição
           <textarea
