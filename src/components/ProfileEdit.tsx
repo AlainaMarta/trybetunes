@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUser, updateUser } from '../services/userAPI';
 import { UserType } from '../types';
 import LoadingMessage from '../pages/Login/Loading';
+import LoadingContext from '../context/LoadingContext';
 
 function ProfileEdit() {
   const [userInfo, setUserinfo] = useState<UserType>({
@@ -13,6 +14,7 @@ function ProfileEdit() {
   });
 
   const [loading, setLoading] = useState<boolean>();
+  const { isLoadingName } = useContext(LoadingContext);
   const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const navigate = useNavigate();
 
@@ -43,8 +45,87 @@ function ProfileEdit() {
   }
   return (
     <div className="edit-profile-div">
-      {loading && <LoadingMessage />}
-      <form onSubmit={ handleSubmit }>
+      { loading ? <LoadingMessage /> : (
+        <form onSubmit={ handleSubmit }>
+          <section>
+            <img
+              alt="profile"
+              src={ userInfo.image
+                ? userInfo.image : '/src/images/icon_profile.svg' }
+            />
+            <input
+              type="text"
+              name="image"
+              id="image-link"
+              value={ userInfo?.image }
+              required
+              placeholder="Insira um link"
+              data-testid="edit-input-image"
+              onChange={ handlechangeForm }
+            />
+          </section>
+          <label>
+            Nome:
+            <input
+              value={ userInfo?.name }
+              name="name"
+              required
+              data-testid="edit-input-name"
+              onChange={ handlechangeForm }
+            />
+          </label>
+          <label>
+            E-mail:
+            <input
+              value={ userInfo?.email }
+              name="email"
+              required
+              data-testid="edit-input-email"
+              onChange={ handlechangeForm }
+            />
+          </label>
+
+          <label>
+            Descrição:
+            <textarea
+              value={ userInfo?.description }
+              name="description"
+              required
+              data-testid="edit-input-description"
+              onChange={ handlechangeForm }
+            />
+          </label>
+          <button
+            data-testid="edit-input-image"
+            disabled={ userInfo.name.trim() === ''
+            || userInfo.email.trim() === ''
+            || userInfo.image.trim() === ''
+            || userInfo.description.trim() === ''
+            || !regexEmail.test(userInfo.email) }
+          >
+            SALVAR
+          </button>
+
+        </form>) }
+      {/* {loading && <LoadingMessage />} */}
+      {/* <form onSubmit={ handleSubmit }>
+        <section>
+          <img
+            alt="profile"
+            src={ userInfo.image
+              ? userInfo.image : '/src/images/icon_profile.svg' }
+          />
+          <input
+            type="text"
+            name="image"
+            id="image-link"
+            value={ userInfo?.image }
+            required
+            placeholder="Insira um link"
+            data-testid="edit-input-image"
+            onChange={ handlechangeForm }
+          />
+        </section>
         <label>
           Nome
           <input
@@ -65,16 +146,7 @@ function ProfileEdit() {
             onChange={ handlechangeForm }
           />
         </label>
-        <input
-          type="text"
-          name="image"
-          id="image-link"
-          value={ userInfo?.image }
-          required
-          placeholder="Insira um link"
-          data-testid="edit-input-image"
-          onChange={ handlechangeForm }
-        />
+
         <label>
           Descrição
           <textarea
@@ -95,7 +167,7 @@ function ProfileEdit() {
         >
           SALVAR
         </button>
-      </form>
+      </form> */}
     </div>
   );
 }

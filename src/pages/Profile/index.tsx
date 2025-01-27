@@ -20,13 +20,34 @@ function Profile() {
   }, []);
 
   return (
-    <div className="profile-section">
-      {loading && <LoadingMessage />}
-      <h1>{userInfo?.name}</h1>
-      <h2>{userInfo?.email}</h2>
-      <h3>{userInfo?.description}</h3>
-      <img src={ userInfo?.image } alt="profile" data-testid="profile-image" />
-      <Link to="/profile/edit">Editar perfil </Link>
+    <div className="profile-container">
+      {loading ? <LoadingMessage /> : (
+        <section>
+          <img
+            src={ userInfo?.image
+              ? userInfo.image : '/src/images/icon_profile.svg' }
+            alt="profile"
+            data-testid="profile-image"
+          />
+          <Link id="link" to="/profile/edit">Editar perfil </Link>
+          <h3 id="name-title">
+            Nome:
+            {' '}
+          </h3>
+          <p id="name">{userInfo?.name}</p>
+          <h3 id="email-title">
+            Email:
+            {' '}
+          </h3>
+          <p id="email">{userInfo?.email}</p>
+          <h3 id="description-title">
+            Descrição:
+            {' '}
+          </h3>
+          <p id="description">{userInfo?.description}</p>
+
+        </section>
+      )}
     </div>
   );
 }
